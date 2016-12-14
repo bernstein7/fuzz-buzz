@@ -4,6 +4,14 @@ require_relative 'services/answers_service.rb'
 
 module FizzBuzz
   class Application < Sinatra::Base
+    configure do
+      set :public_folder, File.dirname(__FILE__) + '/assets'
+      set :static, true
+    end
+
+    get '/' do
+      erb :index
+    end
 
     post '/get_result' do
       service = AnswersService.new
